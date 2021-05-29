@@ -58,9 +58,10 @@ body{
     display: flex;
     flex-direction: column;
     border-radius: 1rem 1rem 0 0;
-    transform: translateY(250%);
+    /* transform: translateY(100%); */
     background: rgb(239, 239, 239);
     width: 19.5%;
+    bottom: 0%;
     align-self: center;
     padding: 0 0 0.5rem;
 }
@@ -78,6 +79,7 @@ input[type="range"]{
     border: none;
     cursor: pointer;
     appearance: none;
+    -webkit-appearance: none;
     height: 0.05rem;
     margin: 1rem;
     background: grey;
