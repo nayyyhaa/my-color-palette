@@ -58,12 +58,16 @@ body{
     display: flex;
     flex-direction: column;
     border-radius: 1rem 1rem 0 0;
-    /* transform: translateY(100%); */
+    transform: translateY(100%);
+    transition: all 0.3s ease-in;
     background: rgb(239, 239, 239);
     width: 19.5%;
     bottom: 0%;
     align-self: center;
     padding: 0 0 0.5rem;
+}
+.open {
+    transform: translateY(0%);
 }
 .close-adjustments {
     width: fit-content;

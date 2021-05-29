@@ -1,6 +1,7 @@
 let colorDivs = document.querySelectorAll(".color");
 let generateBtn = document.querySelector(".generate")
-
+let adjustBtns = document.querySelectorAll(".adjust");
+let sliders = document.querySelectorAll(".sliders");
 /*functions*/
 
 /*generating color*/
@@ -40,6 +41,19 @@ function randomColor() {
     })
 }
 
+/*open slider*/
+function toggleSlider(index) {
+    console.log(sliders[index])
+    let slider = sliders[index];
+    slider.classList.toggle("open");
+}
+
 /*Event Listeners*/
 document.addEventListener("DOMContentLoaded",randomColor);
 generateBtn.addEventListener("click",randomColor);
+
+adjustBtns.forEach((adjust,index) => {
+    adjust.addEventListener("click",() => {
+        toggleSlider(index)
+    });
+})
