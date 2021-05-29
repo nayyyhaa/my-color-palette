@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
 :root{
-    --primary-color: rgb(100, 2, 165);
+    --primary-color: #7959a7;
 }
 *,
 *::before,
@@ -108,4 +108,21 @@ input[type="range"]{
     border-radius: 0.5rem;
     margin: 1rem;
     cursor: pointer;
+}
+
+/*media queries*/
+
+@media screen and (max-width: 720px){
+    body{
+        font-size: 0.5rem;
+    }
+    .adjust, .lock {
+        font-size: 1rem;
+    }
+    .library, .generate, .save, .close-adjustments {
+        font-size: 1rem;
+    }
+    p{
+        font-size: 0.75rem;
+    }
 }

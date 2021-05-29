@@ -1,9 +1,9 @@
 let colorDivs = document.querySelectorAll(".color");
-let hexText = document.querySelectorAll(".color h2")
 let generateBtn = document.querySelector(".generate")
 
 /*functions*/
 
+/*generating color*/
 function generateHex() {
     const hexLetters = "0123456789abcdef";
     let hash = "#";
@@ -11,14 +11,32 @@ function generateHex() {
         hash += hexLetters[Math.floor(Math.random()*16)];
     }
     return hash;
+
+    /*chroma library*/
+    // let hash = chroma.random();
+    // return hash;
 }
 
+/*text and bg contrast -luminance*/
+function checkLuminence(color,text) {
+    let contrast = chroma(color).luminance();
+    if(contrast < 0.5) text.style.color = "white";
+    else text.style.color = "black";
+}
+
+/*get Color*/
 function randomColor() {
-    colorDivs.forEach((color) => {
+    colorDivs.forEach((div) => {
         let generatedHex = generateHex();
-        //console.log(color.childNodes[1]);
-        color.childNodes[1].innerHTML = generatedHex;
-        color.style.backgroundColor = generatedHex;
+        let hexText = div.children[0];
+        //console.log(color.children); -HTML collection color.childNode: nodelist w/ text and in between elements
+
+        /*setting up color*/
+        hexText.innerHTML = generatedHex;
+        div.style.backgroundColor = generatedHex;
+
+        /*check luminance for hexText*/
+        checkLuminence(generatedHex, hexText);
     })
 }
 
