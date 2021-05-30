@@ -33,8 +33,9 @@ function randomColor() {
     colorArray = [];
     colorDivs.forEach((div) => {
         let generatedHex = generateHex();
-        colorArray.push(generatedHex);
+        colorArray.push(chroma(generatedHex).hex());
         let hexText = div.children[0];
+        let icons = div.querySelectorAll(".controls button");
         //console.log(color.children); -HTML collection color.childNode: nodelist w/ text and in between elements
 
         /*setting up color*/
@@ -43,6 +44,7 @@ function randomColor() {
 
         /*check luminance for hexText*/
         checkLuminence(generatedHex, hexText);
+        for(icon of icons) checkLuminence(generatedHex, icon);
 
         /*colorize sliders*/
         let color = chroma(generatedHex);
@@ -52,6 +54,9 @@ function randomColor() {
         const brightness = sliderItems[2];
         colorizeSliders(color, hue, saturation, brightness);
     })
+    
+    /*reset slider*/
+    resetSlider();
 }
 
 /*colorize Sliders*/
@@ -80,11 +85,24 @@ function updateBackground(e) {
     let lightness = slider[2];
 
     let color = colorArray[index];
-    let bgColor = chroma(color).set("hsl.h",hue.value)
-    .set("hsl.s",saturation.value)
-    .set("hsl.l",lightness.value);
-    console.log(hue.value,saturation.value,lightness.value)
-    colorDivs[index-1].style.backgroundColor = bgColor;
+    let bgColor = chroma(color)
+        .set("hsl.h",hue.value)
+        .set("hsl.s",saturation.value)
+        .set("hsl.l",lightness.value);
+    colorDivs[index].style.backgroundColor = bgColor;
+}
+
+/*update UI*/
+function updateTextUI(index){
+    let activeDiv = colorDivs[index];
+    let color = chroma(activeDiv.style.backgroundColor);
+    let hexText = activeDiv.children[0];
+    let icons = activeDiv.querySelectorAll(".controls button");
+
+    hexText.innerText = color.hex();
+    /*check luminance for hexText*/
+    checkLuminence(color, hexText);
+    for(icon of icons) checkLuminence(color,icon);
 }
 
 /*open slider*/
@@ -95,6 +113,32 @@ function toggleSlider(index) {
 function closeSlider(index) {
     let slider = sliders[index];
     slider.classList.remove("open");
+}
+
+/*reset slider*/
+function resetSlider() {
+    let sliderItems = document.querySelectorAll(".sliders input");
+    sliderItems.forEach((slider) => {
+        //console.log(slider)
+        if(slider.name === "hue"){
+            let hueColor = colorArray[slider.getAttribute("data-hue")];
+            //console.log(colorArray[0])
+            let hueValue = chroma(hueColor).hsl()[0];
+            slider.value = Math.floor(hueValue);
+        }
+        if(slider.name === "saturation"){
+            let satColor = colorArray[slider.getAttribute("data-sat")];
+            //console.log(satColor)
+            let satValue = chroma(satColor).hsl()[1];
+            slider.value = Math.floor(satValue*100)/100;
+        }
+        if(slider.name === "lightness"){
+            let lightColor = colorArray[slider.getAttribute("data-light")];
+            //console.log(chroma(lightColor).hsl()[2])
+            let brightValue = chroma(lightColor).hsl()[2];
+            slider.value = Math.floor(brightValue*100)/100;
+        }
+    })
 }
 
 /*Event Listeners*/
@@ -115,4 +159,10 @@ closeBtns.forEach((close,index) => {
 
 sliderInputs.forEach((slider) => {
     slider.addEventListener("input",updateBackground);
+})
+
+colorDivs.forEach((div,index) => {
+    div.addEventListener("change",()=>{
+        updateTextUI(index);
+    });
 })
