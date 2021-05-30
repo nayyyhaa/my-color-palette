@@ -88,8 +88,8 @@ input[type="range"]{
     margin: 1rem;
     background: grey;
 }
-/*panel*/
 
+/*panel*/
 .panel{
     display: flex;
     align-items: center;
@@ -114,6 +114,42 @@ input[type="range"]{
     border-radius: 0.5rem;
     margin: 1rem;
     cursor: pointer;
+}
+
+/*popups*/ 
+.copy-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    pointer-events: none;
+}
+.copy-container.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+.copy-popup {
+    background: white;
+    height: 20%;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    border-radius: 1.5rem;
+    font-size: 1.25rem;
+    text-align: center;
+    transition: all 0.5s ease;
+    transform: translateY(0%);
+}
+.copy-popup.active {
+    transform: translateY(10%);
 }
 
 /*media queries*/
@@ -159,5 +195,9 @@ input[type="range"]{
     }
     p{
         font-size: 0.75rem;
+    }
+    .copy-popup {
+        font-size: 0.75rem;
+        width: 40%;
     }
 }

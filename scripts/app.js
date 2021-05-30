@@ -4,6 +4,8 @@ let adjustBtns = document.querySelectorAll(".adjust");
 let sliders = document.querySelectorAll(".sliders");
 let closeBtns = document.querySelectorAll(".close-adjustments");
 let sliderInputs = document.querySelectorAll('input[type="range"]')
+let colorHexes = document.querySelectorAll('.color h2');
+let copyContainer = document.querySelector(".copy-container");
 let colorArray = [];
 /*functions*/
 
@@ -139,6 +141,25 @@ function resetSlider() {
     })
 }
 
+/*copy hex color*/
+function copyHexColor(hex){
+    /*setting value to temp div*/
+    let tempDiv = document.createElement('textarea');
+    tempDiv.value = hex.innerText;
+    document.body.appendChild(tempDiv);
+
+    /*execute copy func*/
+    tempDiv.select();
+    document.execCommand("copy");
+    document.body.removeChild(tempDiv);
+
+    /*open success message*/
+    copyContainer.classList.add("active");
+    //to pop up
+    let popUp = copyContainer.children[0]
+    popUp.classList.add("active");
+}
+
 /*Event Listeners*/
 document.addEventListener("DOMContentLoaded",randomColor);
 generateBtn.addEventListener("click",randomColor);
@@ -163,4 +184,19 @@ colorDivs.forEach((div,index) => {
     div.addEventListener("change",()=>{
         updateTextUI(index);
     });
+})
+
+colorHexes.forEach(hex => {
+    hex.addEventListener("click", ()=>{
+        copyHexColor(hex);
+    })
+})
+
+/*close popup*/
+copyContainer.addEventListener("transitionend", () => {
+    /*close success message*/
+    copyContainer.classList.remove("active");
+    //to pop up
+    let popUp = copyContainer.children[0];
+    popUp.classList.remove("active");
 })
