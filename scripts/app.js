@@ -90,6 +90,9 @@ function updateBackground(e) {
         .set("hsl.s",saturation.value)
         .set("hsl.l",lightness.value);
     colorDivs[index].style.backgroundColor = bgColor;
+
+    /*color to sliders*/
+    colorizeSliders(bgColor, hue, saturation, lightness)
 }
 
 /*update UI*/
@@ -117,24 +120,19 @@ function closeSlider(index) {
 
 /*reset slider*/
 function resetSlider() {
-    let sliderItems = document.querySelectorAll(".sliders input");
-    sliderItems.forEach((slider) => {
-        //console.log(slider)
+    sliderInputs.forEach((slider) => {
         if(slider.name === "hue"){
             let hueColor = colorArray[slider.getAttribute("data-hue")];
-            //console.log(colorArray[0])
             let hueValue = chroma(hueColor).hsl()[0];
             slider.value = Math.floor(hueValue);
         }
         if(slider.name === "saturation"){
             let satColor = colorArray[slider.getAttribute("data-sat")];
-            //console.log(satColor)
             let satValue = chroma(satColor).hsl()[1];
             slider.value = Math.floor(satValue*100)/100;
         }
         if(slider.name === "lightness"){
             let lightColor = colorArray[slider.getAttribute("data-light")];
-            //console.log(chroma(lightColor).hsl()[2])
             let brightValue = chroma(lightColor).hsl()[2];
             slider.value = Math.floor(brightValue*100)/100;
         }
