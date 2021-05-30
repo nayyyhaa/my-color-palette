@@ -84,7 +84,7 @@ input[type="range"]{
     cursor: pointer;
     appearance: none;
     -webkit-appearance: none;
-    height: 0.05rem;
+    height: 0.5rem;
     margin: 1rem;
     background: grey;
 }
@@ -122,11 +122,40 @@ input[type="range"]{
     body{
         font-size: 0.5rem;
     }
+
+    /*color palette*/
+    .color-palette {
+        flex-direction: column;
+    }
+    .color {
+        flex-direction: row;
+        min-height: auto;
+        width: 100%;
+        align-items: center;
+    }
+    .controls {
+        flex-direction: row;
+    }
     .adjust, .lock {
         font-size: 1rem;
     }
-    .library, .generate, .save, .close-adjustments {
+    .library, .generate, .save {
         font-size: 1rem;
+    }
+    .sliders {
+        right: 0%;
+        bottom: auto;
+        transform: translateX(100%);
+        width: 40%;
+    }
+    .open {
+        transform: translateX(-5%);
+    }
+    .close-adjustments {
+        font-size: 0.5rem;
+    }
+    input[type="range"] {
+        margin: 0.25rem;
     }
     p{
         font-size: 0.75rem;
