@@ -3,6 +3,7 @@ let generateBtn = document.querySelector(".generate")
 let adjustBtns = document.querySelectorAll(".adjust");
 let sliders = document.querySelectorAll(".sliders");
 let closeBtns = document.querySelectorAll(".close-adjustments");
+let lockBtns = document.querySelectorAll(".lock");
 let sliderInputs = document.querySelectorAll('input[type="range"]')
 let colorHexes = document.querySelectorAll('.color h2');
 let copyContainer = document.querySelector(".copy-container");
@@ -35,9 +36,14 @@ function randomColor() {
     colorArray = [];
     colorDivs.forEach((div) => {
         let generatedHex = generateHex();
-        colorArray.push(chroma(generatedHex).hex());
         let hexText = div.children[0];
         let icons = div.querySelectorAll(".controls button");
+
+        if(div.classList.contains("locked")) {
+            colorArray.push(hexText.innerText);
+            return;
+        }
+        else colorArray.push(chroma(generatedHex).hex());
         //console.log(color.children); -HTML collection color.childNode: nodelist w/ text and in between elements
 
         /*setting up color*/
@@ -160,6 +166,12 @@ function copyHexColor(hex){
     popUp.classList.add("active");
 }
 
+function lockColor(index,e) {
+    colorDivs[index].classList.toggle("locked");
+    if(colorDivs[index].classList.contains("locked")) e.target.innerHTML = '<i class="fas fa-lock"></i>';
+    else e.target.innerHTML = '<i class="fas fa-lock-open"></i>';
+}
+
 /*Event Listeners*/
 document.addEventListener("DOMContentLoaded",randomColor);
 generateBtn.addEventListener("click",randomColor);
@@ -199,4 +211,10 @@ copyContainer.addEventListener("transitionend", () => {
     //to pop up
     let popUp = copyContainer.children[0];
     popUp.classList.remove("active");
+})
+
+lockBtns.forEach((lock,index) => {
+    lock.addEventListener("click", (e) => {
+        lockColor(index,e);
+    })
 })
