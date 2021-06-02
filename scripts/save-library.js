@@ -60,14 +60,62 @@ function saveLocalStorage(cacheData){
 }
 function getLocalPalette(){
     let paletteInLocal = checkLocalStorage();
-    let div = document.createElement("div");
+    let bigPreview = document.createElement("div");
+    bigPreview.classList.add("bigpalette-preview");
     paletteInLocal.forEach(savePalette => {
+        console.log(savePalette)
+        let index = savePalette.paletterNr;
+        let palettePreview = document.createElement("div");
+        palettePreview.classList.add("palette-preview");
+        let paletteTitle = document.createElement("h4");
+        paletteTitle.innerText = savePalette.name;
+        paletteTitle.classList.add("palette-title");
+        let smallPreview = document.createElement("div");
+        smallPreview.classList.add("small-preview")
+        savePalette.palette.forEach((palette) => {
+            
+            let smallDiv = document.createElement("div");
+            smallDiv.classList.add("small-div")
+            smallDiv.style.backgroundColor = palette;
+            smallPreview.appendChild(smallDiv);
+        })
+        let selectBtn = document.createElement("button");
+        selectBtn.classList.add("select-btn");
+        selectBtn.innerHTML = "Select";
         
-    // div.appendChild(document.createTextNode(savePalette.name+" : "+savePalette.palette));
-    // div.append(document.innerHTML = "\n")
+        /*select event*/
+        selectBtn.addEventListener("click", (e) => {
+            colorArray = [];
+            closeLibPanel();
+            let color = savePalette.palette;
+            colorDivs.forEach((div,i) => {
+                
+                let icons = div.querySelectorAll(".controls button");
+                let hexText = div.children[0];
+                div.style.backgroundColor = color[i];
+                hexText.innerHTML = color[i];
+                colorArray.push(color[i]);
+                /*check luminance for hexText*/
+                checkLuminence(color[i], hexText);
+                for(icon of icons) checkLuminence(color[i], icon);
+
+                /*colorize sliders*/
+                let Tcolor = chroma(color[i]);
+                let sliderItems = div.querySelectorAll(".sliders input");
+                const hue = sliderItems[0];
+                const saturation = sliderItems[1];
+                const brightness = sliderItems[2];
+                colorizeSliders(Tcolor, hue, saturation, brightness);
+            })
+            resetSlider();
+        });
+        palettePreview.appendChild(paletteTitle);
+        palettePreview.appendChild(smallPreview);
+        palettePreview.appendChild(selectBtn);
+        bigPreview.appendChild(palettePreview);
+
     });
-    div.innerHTML=JSON.stringify(paletteInLocal);
-    libPopup.appendChild(div);
+    libPopup.appendChild(bigPreview);
 }
 /*Event Listeners*/
 
