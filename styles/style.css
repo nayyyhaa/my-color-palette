@@ -131,6 +131,7 @@ input[type="range"]{
     border: 1px solid black;
     border-radius: 0.5rem;
     font-size: 1.25rem;
+    margin: 2rem;
 }
 .save-submit{
     background: var(--primary-color);
@@ -183,7 +184,8 @@ input[type="range"]{
 
 .save-popup,
 .library-popup {
-    height: 40%;
+    height: fit-content;
+    padding:1rem 0;
     width: 60%;
 }
 .copy-popup.active,
