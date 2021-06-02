@@ -32,7 +32,7 @@ function savePalette(){
     saveLocalStorage(localObj);
     cacheDataHexes = [];
     saveName.value = "";
-    saveInLibrary();
+    saveInLibrary(localObj);
 }
 function openLibPanel(){
     libContainer.classList.add("active");
@@ -61,8 +61,6 @@ function saveLocalStorage(cacheData){
 }
 function getLocalPalette(){
     let paletteInLocal = checkLocalStorage();
-    let bigPreview = document.createElement("div");
-    bigPreview.classList.add("bigpalette-preview");
     paletteInLocal.forEach(savePalette => {
         console.log(savePalette)
         let index = savePalette.paletterNr;
@@ -117,17 +115,12 @@ function getLocalPalette(){
         palettePreview.appendChild(paletteTitle);
         palettePreview.appendChild(smallPreview);
         palettePreview.appendChild(selectBtn);
-        bigPreview.appendChild(palettePreview);
+    libPopup.appendChild(palettePreview);
 
     });
-    libPopup.appendChild(bigPreview);
 }
 
-function saveInLibrary(){
-    let paletteInLocal = checkLocalStorage();
-    let bigPreview = document.createElement("div");
-    bigPreview.classList.add("bigpalette-preview");
-    cacheData.forEach(savePalette => {
+function saveInLibrary(savePalette){
         console.log(savePalette)
         let index = savePalette.paletterNr;
         let palettePreview = document.createElement("div");
@@ -181,10 +174,7 @@ function saveInLibrary(){
         palettePreview.appendChild(paletteTitle);
         palettePreview.appendChild(smallPreview);
         palettePreview.appendChild(selectBtn);
-        bigPreview.appendChild(palettePreview);
-
-    });
-    libPopup.appendChild(bigPreview);
+        libPopup.appendChild(palettePreview);
 }
 /*Event Listeners*/
 
