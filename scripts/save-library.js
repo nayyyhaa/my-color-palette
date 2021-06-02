@@ -62,7 +62,6 @@ function saveLocalStorage(cacheData){
 function getLocalPalette(){
     let paletteInLocal = checkLocalStorage();
     paletteInLocal.forEach(savePalette => {
-        console.log(savePalette)
         let index = savePalette.paletterNr;
         let palettePreview = document.createElement("div");
         palettePreview.classList.add("palette-preview");
@@ -121,7 +120,6 @@ function getLocalPalette(){
 }
 
 function saveInLibrary(savePalette){
-        console.log(savePalette)
         let index = savePalette.paletterNr;
         let palettePreview = document.createElement("div");
         palettePreview.classList.add("palette-preview");

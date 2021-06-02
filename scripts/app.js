@@ -1,5 +1,6 @@
 let colorDivs = document.querySelectorAll(".color");
 let generateBtn = document.querySelector(".generate")
+let copyBtns = document.querySelectorAll(".copy");
 let adjustBtns = document.querySelectorAll(".adjust");
 let sliders = document.querySelectorAll(".sliders");
 let closeBtns = document.querySelectorAll(".close-adjustments");
@@ -176,6 +177,11 @@ function lockColor(index,e) {
 document.addEventListener("DOMContentLoaded",randomColor);
 generateBtn.addEventListener("click",randomColor);
 
+copyBtns.forEach((copy,index) => {
+    copy.addEventListener("click",()=> {
+        copyHexColor(colorHexes[index]);
+    });
+});
 adjustBtns.forEach((adjust,index) => {
     adjust.addEventListener("click",() => {
         toggleSlider(index);

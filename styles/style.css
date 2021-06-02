@@ -50,6 +50,7 @@ body {
     justify-content: space-between;
 }
 
+.copy,
 .adjust,
 .lock {
     width: fit-content;
@@ -278,6 +279,7 @@ input[type="range"] {
         flex-direction: row;
     }
 
+    .copy,
     .adjust,
     .lock {
         font-size: 1rem;
