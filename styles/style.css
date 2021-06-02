@@ -1,8 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
-:root{
+:root {
     --primary-color: #7a9acb;
 }
+
 *,
 *::before,
 *::after {
@@ -10,17 +11,20 @@
     border: 0;
     box-sizing: border-box;
 }
-i,svg{
+
+i,
+svg {
     pointer-events: none;
 }
-body{
+
+body {
     font-family: 'Poppins',
-    sans-serif;
+        sans-serif;
     min-height: 100vh;
 }
 
 /*color palatte*/
-.color-palette{
+.color-palette {
     min-height: 80vh;
     display: flex;
     align-items: center;
@@ -28,6 +32,7 @@ body{
     position: relative;
     overflow: hidden;
 }
+
 .color {
     min-height: 80vh;
     flex: 1;
@@ -37,12 +42,14 @@ body{
     justify-content: space-evenly;
     text-align: center;
 }
-.controls{
+
+.controls {
     display: flex;
     flex-direction: column;
     align-content: center;
     justify-content: space-between;
 }
+
 .adjust,
 .lock {
     width: fit-content;
@@ -53,12 +60,13 @@ body{
     background: none;
     cursor: pointer;
 }
-.locked{
+
+.locked {
     content: "/f023"
 }
 
 /*sliders*/
-.sliders{
+.sliders {
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -71,9 +79,11 @@ body{
     align-self: center;
     padding: 0 0 0.5rem;
 }
+
 .open {
     transform: translateY(0%);
 }
+
 .close-adjustments,
 .save-close,
 .library-close {
@@ -86,7 +96,8 @@ body{
     background: var(--primary-color);
     color: white;
 }
-input[type="range"]{
+
+input[type="range"] {
     border: none;
     cursor: pointer;
     appearance: none;
@@ -97,12 +108,13 @@ input[type="range"]{
 }
 
 /*panel*/
-.panel{
+.panel {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
     min-height: 20vh;
 }
+
 .library-panel,
 .generate-panel,
 .save-panel {
@@ -112,7 +124,10 @@ input[type="range"]{
     align-items: center;
     justify-content: center;
 }
-.library, .generate, .save {
+
+.library,
+.generate,
+.save {
     padding: 0.5rem 1rem;
     font-size: 1.5rem;
     background-color: var(--primary-color);
@@ -122,10 +137,13 @@ input[type="range"]{
     margin: 1rem;
     cursor: pointer;
 }
-.save-close, .library-close{
+
+.save-close,
+.library-close {
     position: absolute;
     top: 0%;
 }
+
 .save-name {
     padding: 1rem;
     border: 1px solid black;
@@ -133,7 +151,8 @@ input[type="range"]{
     font-size: 1.25rem;
     margin: 2rem;
 }
-.save-submit{
+
+.save-submit {
     background: var(--primary-color);
     color: white;
     padding: 0.5rem 1rem;
@@ -142,7 +161,7 @@ input[type="range"]{
     font-size: 1.25rem;
 }
 
-/*popups*/ 
+/*popups*/
 .copy-container,
 .save-container,
 .library-container {
@@ -159,12 +178,14 @@ input[type="range"]{
     opacity: 0;
     pointer-events: none;
 }
+
 .copy-container.active,
 .save-container.active,
 .library-container.active {
     opacity: 1;
     pointer-events: auto;
 }
+
 .copy-popup,
 .save-popup,
 .library-popup {
@@ -185,13 +206,18 @@ input[type="range"]{
 .save-popup,
 .library-popup {
     height: fit-content;
-    padding:1rem 0;
+    padding: 1rem 0;
     width: 60%;
 }
-.library-popup{
-    height: 60%;
+
+.library-popup {
+    min-width: 40%;
+    padding: 1rem 0;
+    justify-content: flex-start;
     overflow-y: scroll;
+    max-height: 50vh;
 }
+
 .copy-popup.active,
 .save-popup.active,
 .library-popup.active {
@@ -199,41 +225,40 @@ input[type="range"]{
 }
 
 /*lib palette */
-.bigpalette-preview{
+.palette-preview {
     display: flex;
-    flex-direction: column;
+    align-items: center;
     justify-content: space-evenly;
-    align-items: center;
-}
-.palette-preview{
-    display: flex;
-    margin: 1rem;
-    align-items: center;
-    justify-content: space-between;
     width: 100%;
+    padding: 2rem;
 }
-.palette-title{
-    flex: 1 1 20rem;
+
+.palette-title {
+    flex: 1 1 5rem;
 }
+
 .small-preview {
     display: flex;
+    flex: 1.25;
 }
+
 .small-div {
     flex: 1;
-    height: 2.5rem;
-    width: 2rem;
+    height: 4rem;
 }
+
 .select-btn {
     background: var(--primary-color);
     color: white;
     border-radius: 0rem 0.75rem 0.75rem 0;
-    height: 2.5rem;
+    height: 4rem;
     cursor: pointer;
 }
+
 /*media queries*/
 
-@media screen and (max-width: 720px){
-    body{
+@media screen and (max-width: 720px) {
+    body {
         font-size: 0.5rem;
     }
 
@@ -241,44 +266,98 @@ input[type="range"]{
     .color-palette {
         flex-direction: column;
     }
+
     .color {
         flex-direction: row;
         min-height: auto;
         width: 100%;
         align-items: center;
     }
+
     .controls {
         flex-direction: row;
     }
-    .adjust, .lock {
+
+    .adjust,
+    .lock {
         font-size: 1rem;
     }
-    .library, .generate, .save {
+
+    .library,
+    .generate,
+    .save {
         font-size: 1rem;
     }
+
     .sliders {
         right: 0%;
         bottom: auto;
         transform: translateX(100%);
         width: 40%;
     }
+
     .open {
         transform: translateX(-5%);
     }
+
     .close-adjustments {
         font-size: 0.5rem;
     }
+
     input[type="range"] {
         margin: 0.25rem;
     }
-    p{
+
+    p {
         font-size: 0.75rem;
+    }
+    .library-popup.active {
+        transform: translateY(1%);
     }
     .copy-popup {
         font-size: 0.75rem;
         width: 40%;
     }
-    .save-popup {
+
+    .save-popup,.library-popup {
         width: 80%;
+        padding: 2rem 0;
+    }
+    .library-popup{
+        min-height: 80vh;
+    }
+    .save-name {
+        padding: 0.25rem;
+        font-size: 1rem;
+        margin: 0.75rem;
+    }
+
+    /*library */
+    .palette-preview {
+        flex-direction: row;
+    }
+    .palette-title {
+        flex: 1;
+        word-wrap:break-word;
+        overflow-wrap: break-word;
+        font-size: 1rem;
+    }
+    .small-preview {
+        flex: 1;
+        width: 80%;
+        margin: 0 0 0 1rem;
+    }
+
+    .small-div {
+        flex: 1;
+        height: 4rem;
+    }
+
+    .select-btn {
+        background: var(--primary-color);
+        color: white;
+        border-radius: 0rem 0.75rem 0.75rem 0;
+        height: 4rem;
+        cursor: pointer;
     }
 }
