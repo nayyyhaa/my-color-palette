@@ -86,12 +86,12 @@ function getLocalPalette(){
         let smallPreview = document.createElement("div");
         smallPreview.classList.add("small-preview")
         savePalette.palette.forEach((palette) => {
-          //  if(palette){
+            if(palette){
                 let smallDiv = document.createElement("div");
                 smallDiv.classList.add("small-div")
                 smallDiv.style.backgroundColor = palette;
                 smallPreview.appendChild(smallDiv);
-          //  }
+            }
         })
         let selectBtn = document.createElement("button");
         selectBtn.classList.add("select-btn");
@@ -159,12 +159,12 @@ function saveInLibrary(savePalette){
         let smallPreview = document.createElement("div");
         smallPreview.classList.add("small-preview")
         savePalette.palette.forEach((palette) => {
-           // if(palette){
+            if(palette){
                 let smallDiv = document.createElement("div");
                 smallDiv.classList.add("small-div")
                 smallDiv.style.backgroundColor = palette;
                 smallPreview.appendChild(smallDiv);
-           // }
+            }
         })
         let selectBtn = document.createElement("button");
         selectBtn.classList.add("select-btn");

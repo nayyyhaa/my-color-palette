@@ -182,7 +182,7 @@ function closeColorDiv(index,e){
     let hexText = colorDivs.item(index).children[0];
     //console.log(colorDivs.item(index).children[0].innerText);
     colorDivs.item(index).style.backgroundColor = "#FFFFFF";
-    hexText.innerText = "#FFFFFF";
+    hexText.innerText = "";
     lockColor(index,e)
     //console.log(colorDivs.length);
     colorDivs.item(index)
