@@ -85,12 +85,13 @@ function getLocalPalette(){
         paletteTitle.classList.add("palette-title");
         let smallPreview = document.createElement("div");
         smallPreview.classList.add("small-preview")
-        savePalette.palette.forEach((palette) => {
-            
-            let smallDiv = document.createElement("div");
-            smallDiv.classList.add("small-div")
-            smallDiv.style.backgroundColor = palette;
-            smallPreview.appendChild(smallDiv);
+        savePalette.palette.forEach((palette,index) => {
+            if(palette){
+                let smallDiv = document.createElement("div");
+                smallDiv.classList.add("small-div")
+                smallDiv.style.backgroundColor = palette;
+                smallPreview.appendChild(smallDiv);
+            }
         })
         let selectBtn = document.createElement("button");
         selectBtn.classList.add("select-btn");

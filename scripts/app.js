@@ -2,6 +2,7 @@ let colorDivs = document.querySelectorAll(".color");
 let generateBtn = document.querySelector(".generate")
 let copyBtns = document.querySelectorAll(".copy");
 let adjustBtns = document.querySelectorAll(".adjust");
+let closeColorBtns = document.querySelectorAll(".palette-close");
 let sliders = document.querySelectorAll(".sliders");
 let closeBtns = document.querySelectorAll(".close-adjustments");
 let lockBtns = document.querySelectorAll(".lock");
@@ -173,6 +174,21 @@ function lockColor(index,e) {
     else e.target.innerHTML = '<i class="fas fa-lock-open"></i>';
 }
 
+function closeColorDiv(index,e){
+    let colorDiv = e.target.parentElement;
+    //console.log(colorDivs)
+    //colorDivs.splice(index,1)
+    colorDivs.item(index).remove();
+    let hexText = colorDivs.item(index).children[0];
+    //console.log(colorDivs.item(index).children[0].innerText);
+    colorDivs.item(index).style.backgroundColor = "#FFFFFF";
+    hexText.innerText = "";
+    lockColor(index,e)
+    //console.log(colorDivs.length);
+    colorDivs.item(index)
+    //colorDiv.remove();
+}
+
 /*Event Listeners*/
 document.addEventListener("DOMContentLoaded",randomColor);
 generateBtn.addEventListener("click",randomColor);
@@ -222,5 +238,11 @@ copyContainer.addEventListener("transitionend", () => {
 lockBtns.forEach((lock,index) => {
     lock.addEventListener("click", (e) => {
         lockColor(index,e);
+    })
+})
+
+closeColorBtns.forEach((close,index) => {
+    close.addEventListener("click", (e) => {
+        closeColorDiv(index,e);
     })
 })
