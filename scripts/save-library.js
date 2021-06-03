@@ -95,7 +95,12 @@ function getLocalPalette(){
         let selectBtn = document.createElement("button");
         selectBtn.classList.add("select-btn");
         selectBtn.innerHTML = "Select";
-        
+
+        /*delete button*/ 
+        let deleteBtn = document.createElement("button");
+        deleteBtn.classList.add("delete");
+        deleteBtn.innerHTML = `<i class="fas fa-trash-alt"></i>`;
+
         /*select event*/
         selectBtn.addEventListener("click", (e) => {
             colorArray = [];
@@ -126,9 +131,18 @@ function getLocalPalette(){
             })
             resetSlider();
         });
+
+        /*delete event */
+        deleteBtn.addEventListener("click", (e) => {
+            deleteFromLocalStorage(index);
+            e.target.parentElement.remove();
+            
+        })
+
         palettePreview.appendChild(paletteTitle);
         palettePreview.appendChild(smallPreview);
         palettePreview.appendChild(selectBtn);
+        palettePreview.appendChild(deleteBtn);
     libPopup.appendChild(palettePreview);
 
     });
@@ -153,6 +167,11 @@ function saveInLibrary(savePalette){
         let selectBtn = document.createElement("button");
         selectBtn.classList.add("select-btn");
         selectBtn.innerHTML = "Select";
+
+        /*delete button*/ 
+        let deleteBtn = document.createElement("button");
+        deleteBtn.classList.add("delete");
+        deleteBtn.innerHTML = `<i class="fas fa-trash-alt"></i>`;
         
         /*select event*/
         selectBtn.addEventListener("click", (e) => {
@@ -184,10 +203,25 @@ function saveInLibrary(savePalette){
             })
             resetSlider();
         });
+
+        /*delete event */
+        deleteBtn.addEventListener("click", (e) => {
+            deleteFromLocalStorage(index);
+            e.target.parentElement.remove();
+            
+        })
+
         palettePreview.appendChild(paletteTitle);
         palettePreview.appendChild(smallPreview);
         palettePreview.appendChild(selectBtn);
+        palettePreview.appendChild(deleteBtn);
         libPopup.appendChild(palettePreview);
+}
+
+function deleteFromLocalStorage(index){
+    let paletteInLocal = checkLocalStorage();
+    paletteInLocal.splice(index,1);
+    localStorage.setItem("paletteInLocal", JSON.stringify(paletteInLocal));
 }
 
 function deleteAllPalettes(e){

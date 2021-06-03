@@ -52,7 +52,8 @@ body {
 
 .copy,
 .adjust,
-.lock {
+.lock,
+.delete {
     width: fit-content;
     align-self: center;
     padding: 0.75rem;
@@ -218,11 +219,14 @@ input[type="range"] {
     overflow-y: scroll;
     max-height: 50vh;
 }
+.delete{
+    color: rgb(238, 87, 87);
+}
 .delete-btn {
     align-self: center;
     padding: 0.5rem 2rem;
     border-radius: 0.75rem;
-    background: var(--primary-color);
+    background: rgb(238, 87, 87);
     color: white;
     border: none;
     transition: all 0.2s ease-in-out;
@@ -230,8 +234,8 @@ input[type="range"] {
     margin: 2rem;
 }
 .delete-btn:hover {
-    color: var(--primary-color);
-    background: white;
+    background: rgb(175, 123, 123);
+    box-shadow: 1px 1px 2px black;
 }
 .copy-popup.active,
 .save-popup.active,
