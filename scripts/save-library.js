@@ -10,6 +10,21 @@ let libPopup = document.querySelector(".library-popup");
 let closeLib = document.querySelector(".library-close");
 let cacheDataHexes = [];
 let cacheData = [];
+let deleteAllBtn = document.querySelector(".delete-btn");
+
+/*Event Listeners*/
+
+getLocalPalette();
+saveBtn.addEventListener("click",openSavePanel);
+closeSave.addEventListener("click",closeSavePanel);
+save.addEventListener("click",savePalette);
+//document.addEventListener("DOMContentLoaded",getLocalPalette);
+
+libBtn.addEventListener("click",() => {
+    openLibPanel();
+});
+closeLib.addEventListener("click",closeLibPanel);
+deleteAllBtn.addEventListener("click",deleteAllPalettes);
 
 /*Functions*/
 function openSavePanel(){
@@ -174,16 +189,14 @@ function saveInLibrary(savePalette){
         palettePreview.appendChild(selectBtn);
         libPopup.appendChild(palettePreview);
 }
-/*Event Listeners*/
 
-getLocalPalette();
-saveBtn.addEventListener("click",openSavePanel);
-closeSave.addEventListener("click",closeSavePanel);
-save.addEventListener("click",savePalette);
-//document.addEventListener("DOMContentLoaded",getLocalPalette);
-
-libBtn.addEventListener("click",() => {
-    openLibPanel();
-});
-closeLib.addEventListener("click",closeLibPanel);
-
+function deleteAllPalettes(e){
+    let parentPopup = e.target.parentElement.children;
+    let palettes = Object.values(parentPopup);
+    palettes.forEach(palette => {
+        if(palette.classList[0] == "palette-preview"){
+            palette.remove();
+        }
+    })
+    localStorage.clear();
+}
