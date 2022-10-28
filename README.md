@@ -7,6 +7,6 @@ Here, the user can:
 - customise a particular color
 - lock the specific color
 - save the entire palette in Local Storage
-- access all the color palette saved from the library.
+- access all the color palette saved from the library
 
 ## Link to the app -> https://colorsplash.netlify.app/
